@@ -1,4 +1,5 @@
 asgiref==3.6.0
+attrs==23.1.0
 bleach==5.0.1
 certifi==2022.12.7
 cffi==1.15.1
@@ -6,9 +7,13 @@ charset-normalizer==3.1.0
 cryptography==40.0.2
 defusedxml==0.7.1
 distlib==0.3.6
+dj-database-url==2.1.0
+dj-email-url==1.0.6
+dj-rest-auth==2.1.11
 Django==4.2.1
 django-allauth==0.54.0
 django-bleach==3.0.1
+django-cache-url==3.4.5
 django-cors-headers==3.14.0
 django-decouple==2.1
 django-extensions @ git+https://github.com/django-extensions/django-extensions.git@25a41d8a3ecb24c009c5f4cac6010a091a3c91c8
@@ -16,12 +21,19 @@ django-filter==23.2
 django-rest-auth==0.9.5
 django-sass-processor==1.2.2
 django-taggit==4.0.0
-djangorestframework==3.14.0
+djangorestframework==3.13.1
+drf-spectacular==0.21.2
+environs==9.5.0
 filelock==3.12.0
 idna==3.4
+inflection==0.5.1
+jsonschema==4.20.0
+jsonschema-specifications==2023.11.2
 Markdown==3.4.3
 MarkupSafe==2.1.3
+marshmallow==3.20.1
 oauthlib==3.2.2
+packaging==23.2
 Pillow==9.5.0
 pipdeptree==2.7.1
 pipenv==2023.4.29
@@ -33,10 +45,14 @@ pygame==2.5.2
 PyJWT==2.6.0
 pyOpenSSL==23.2.0
 python-decouple==3.8
+python-dotenv==1.0.0
 python3-openid==3.2.0
 pytz==2023.3
+PyYAML==6.0.1
+referencing==0.32.0
 requests==2.30.0
 requests-oauthlib==1.3.1
+rpds-py==0.13.2
 six==1.16.0
 social-auth-app-django @ git+https://github.com/python-social-auth/social-app-django.git@bb58a94d792fd4f64e0eb700dadb6a1d6c7c5569
 social-auth-core==4.4.2
@@ -44,6 +60,7 @@ sqlparse==0.4.4
 tinycss2==1.1.1
 typing_extensions==4.5.0
 tzdata==2023.3
+uritemplate==4.1.1
 urllib3==2.0.2
 virtualenv==20.23.0
 virtualenv-clone==0.5.7
