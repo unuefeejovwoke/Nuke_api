@@ -13,10 +13,6 @@ import os
 from pathlib import Path
 
 
-from environs import Env # new
-env = Env() # new
-env.read_env() # new
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,7 +26,7 @@ SECRET_KEY = 'django-insecure-6-va0xkyp2z6n#x&a$&=sgd^$ogd+b0*1lk^$f^5%ec84cp8h^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
-    "django.contrib.sites", 
+    "django.contrib.sites",
     #3rd parties
     'rest_framework',
     'corsheaders',
@@ -113,7 +109,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "django.template.context_processors.request", 
+                "django.template.context_processors.request",
             ],
         },
     },
@@ -124,7 +120,7 @@ SITE_ID = 1 # new
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
 
-AUTH_USER_MODEL = "accounts.CustomUser" 
+AUTH_USER_MODEL = "accounts.CustomUser"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
