@@ -1,0 +1,33 @@
+---
+  - name: Setup Django Server
+    hosts: nuke
+    become: true
+    become_method: sudo
+    vars_files:
+      - vars/main.yaml
+
+    tasks:
+
+    - name: Install Python pip
+      apt:
+        name: python3-pip
+        state: present
+        update_cache: yes
+
+    # - name: pull branch master
+    #   git:
+    #     repo: git@github.com:unuefeejovwoke/Nuke_api.git
+    #     dest: /home/ubuntu/app
+    #     accept_hostkey: yes
+    #     key_file: /home/ubuntu/.ssh/id_rsa 
+
+    - name: Complete Setup
+      shell: |
+        cd {{ work_dir }} && pip install --no-cache-dir -r requirements.txt
+        python3 manage.py migrate
+        rm staticfiles/staticfiles.json
+        mkdir static
+        python3 manage.py collectstatic --no-input
+        python3 manage.py runserver  0.0.0.0:8000 &
+
+
