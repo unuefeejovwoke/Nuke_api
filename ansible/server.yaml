@@ -23,7 +23,7 @@
     - name: Perform Cleanup
       shell: |
         killall python3
-        rm -rf /home/ubuntu/app/*
+        rm -rf /home/ubuntu/app
 
 
     - name: pull branch master

@@ -40,5 +40,5 @@ jobs:
       - name: Run ansible script
         shell: bash 
         run: |
-          ansible-playbook --private-key /home/runner/.ssh/id_rsa -u ubuntu server.yaml
+          ansible-playbook --private-key /home/runner/.ssh/id_rsa -u ubuntu server.yaml -vvv
   
