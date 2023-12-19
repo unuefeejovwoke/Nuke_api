@@ -15,10 +15,8 @@ on:
 
 
 jobs:
-  tf-plan:
+  configure-server:
     runs-on: ubuntu-latest
-
-
 
     defaults:
       run:

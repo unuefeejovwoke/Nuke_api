@@ -17,7 +17,7 @@
     - name: Install Virtual env
       apt:
         name: python3.10-venv
-        state: presesent
+        state: present
         update_cache: yes
 
     - name: Perform Cleanup
