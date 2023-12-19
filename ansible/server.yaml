@@ -22,8 +22,11 @@
 
     - name: Perform Cleanup
       shell: |
-        killall python3
+        pkill -f 'python3 manage.py' &
+        
         rm -rf /home/ubuntu/app
+      ignore_errors: true
+        
 
 
     - name: pull branch master
@@ -39,16 +42,23 @@
         dest: /home/ubuntu/app
         version: dev
 
+
     - name: Complete Setup
       shell: |
-        cd {{ work_dir }} &&  python3 -m venv venv
-        source venv/bin/activate
+        sudo rm -rf venv
+        cd {{ work_dir }}
+        python3 -m venv venv
+        . venv/bin/activate
         
-        pip install --no-cache-dir -r requirements.txt
+        pip install --no-cache-dir -r requirements.txt --require-virtualenv -v
+        mkdir static
         python3 manage.py migrate
         rm staticfiles/staticfiles.json
-        mkdir static
+       
         python3 manage.py collectstatic --no-input
         python3 manage.py runserver  0.0.0.0:8000 &
+      # become: false
+      # become_user: ubuntu
+      # become_flags: '-t'
 
 
