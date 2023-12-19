@@ -1,0 +1,42 @@
+name: Deploy Nuke_api
+
+on:
+
+  workflow_dispatch:
+    inputs:
+      server-ip:
+        type: string
+        description: "Enter the public ip of the server"
+        required: true
+
+
+jobs:
+  tf-plan:
+    runs-on: ubuntu-latest
+
+
+
+    defaults:
+      run:
+        working-directory: ansible
+      
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup ssh
+        shell: bash 
+        run: |
+          service ssh status
+          eval `ssh-agent -s`
+          mkdir -p /home/runner/.ssh/
+          touch /home/runner/.ssh/id_rsa
+          # echo -e "${{secrets.RUNNER_PRIV_KEY}}" > /home/runner/.ssh/id_rsa
+
+          chmod 700 /home/runner/.ssh/id_rsa
+          ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{ inputs.server-ip }} >> /home/runner/.ssh/known_hosts
+
+      - name: Run ansible script
+        shell: bash 
+        run: |
+          ansible-playbook --private-key /home/runner/.ssh/id_rsa -u ubuntu server.yaml
+  
