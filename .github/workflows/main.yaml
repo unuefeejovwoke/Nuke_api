@@ -31,17 +31,17 @@ jobs:
         working-directory: app
         run: |
           docker build . -t 4568910/nuke_api:latest
-          docker tag 4568910/nuke_api:latest:latest 4568910/nuke_api:latest:latest-2
+          docker tag 4568910/nuke_api:latest 4568910/nuke_api:latest-2
 
-          docker pull 4568910/nuke_api:latest:latest
-          docker tag 4568910/nuke_api:latest:latest 4568910/nuke_api:latest:"v1.${GITHUB_RUN_NUMBER}"
+          docker pull 4568910/nuke_api:latest
+          docker tag 4568910/nuke_api:latest 4568910/nuke_api:"v1.${GITHUB_RUN_NUMBER}"
           
-          docker tag 4568910/nuke_api:latest:latest-2 4568910/nuke_api:latest:latest
+          docker tag 4568910/nuke_api:latest-2 4568910/nuke_api:latest
 
       - name: Push Docker image
         run: |
-          docker push 4568910/nuke_api:latest:"v1.${GITHUB_RUN_NUMBER}"
-          docker push 4568910/nuke_api:latest:latest
+          docker push 4568910/nuke_api:"v1.${GITHUB_RUN_NUMBER}"
+          docker push 4568910/nuke_api:latest
 
 
 
