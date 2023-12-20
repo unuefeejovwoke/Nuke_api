@@ -8,6 +8,30 @@
       - vars/main.yaml
 
     tasks:
+      - name: Install Docker
+        apt:
+          name: docker.io
+          state: present
+          update_cache: yes
+
+      - name: remove previous running container and image
+        shell: |
+          docker stop nuke_api && docker rm nuke_api
+          docker rmi 4568910/nuke_api:latest
+        ignore_errors: true
+
+      - name: Pull Docker Image
+        docker_image:
+          name: 4568910/nuke_api:latest
+          source: pull
+
+      - name: Run Docker Container
+        docker_container:
+          name: nuke_api
+          image: 4568910/nuke_api:latest
+          ports:
+            - "8000:8000"
+          restart_policy: always
 
     # - name: Install Python pip
     #   apt:

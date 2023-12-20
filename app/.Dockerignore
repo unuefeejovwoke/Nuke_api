@@ -1,0 +1,27 @@
+# What about adding something here?
+
+venv/
+.venv/
+env/
+
+.git/
+__pycache__
+
+instance/
+
+.pytest_cache/
+.mypy_cache/
+.idea/
+.vscode/
+
+*.pyc
+*.pyo
+*.pyd
+
+.DS_Store
+.env
+.env.local
+.env.*.local
+
+
+.github
