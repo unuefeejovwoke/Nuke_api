@@ -15,8 +15,39 @@ on:
 
 
 jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: 4568910
+          password: Daviddocker97
+
+      - name: Build Docker image and save a previous version
+        working-directory: app
+        run: |
+          docker build . -t 4568910/nuke_api:latest
+          docker tag 4568910/nuke_api:latest:latest 4568910/nuke_api:latest:latest-2
+
+          docker pull 4568910/nuke_api:latest:latest
+          docker tag 4568910/nuke_api:latest:latest 4568910/nuke_api:latest:"v1.${GITHUB_RUN_NUMBER}"
+          
+          docker tag 4568910/nuke_api:latest:latest-2 4568910/nuke_api:latest:latest
+
+      - name: Push Docker image
+        run: |
+          docker push 4568910/nuke_api:latest:"v1.${GITHUB_RUN_NUMBER}"
+          docker push 4568910/nuke_api:latest:latest
+
+
+
   configure-server:
     runs-on: ubuntu-latest
+    needs: [ build-image ]
 
     defaults:
       run:
