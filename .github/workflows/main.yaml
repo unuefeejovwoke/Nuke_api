@@ -66,7 +66,7 @@ jobs:
           echo -e "${{secrets.RUNNER_PRIV_KEY}}" > /home/runner/.ssh/id_rsa
           chmod 700 /home/runner/.ssh/id_rsa
           # ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{ inputs.server-ip }} >> /home/runner/.ssh/known_hosts
-          ssh-keyscan -t rsa,dsa,ecdsa,ed25519 34.214.121.37 >> /home/runner/.ssh/known_hosts
+          ssh-keyscan -t rsa,dsa,ecdsa,ed25519 34.213.114.230 >> /home/runner/.ssh/known_hosts
 
       - name: Run ansible script
         shell: bash 
